@@ -26,8 +26,8 @@ A promise nobody awaited, a loop that fetched ten things one after another, a jo
 Requires Node.js 22 or newer. No `npm install` needed.
 
 ```sh
-git clone https://github.com/REllwood/PromiseAudit.git
-cd PromiseAudit
+git clone https://github.com/REllwood/Promise-Audit.git
+cd Promise-Audit
 npm start
 ```
 

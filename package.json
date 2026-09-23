@@ -6,11 +6,11 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/REllwood/PromiseAudit.git"
+    "url": "git+https://github.com/REllwood/Promise-Audit.git"
   },
-  "homepage": "https://github.com/REllwood/PromiseAudit#readme",
+  "homepage": "https://github.com/REllwood/Promise-Audit#readme",
   "bugs": {
-    "url": "https://github.com/REllwood/PromiseAudit/issues"
+    "url": "https://github.com/REllwood/Promise-Audit/issues"
   },
   "type": "module",
   "engines": {
