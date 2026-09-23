@@ -1,0 +1,28 @@
+{
+  "name": "promise-audit",
+  "version": "0.1.0",
+  "description": "Trace the promises your JavaScript application started, abandoned and waited on in the wrong order.",
+  "private": true,
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/REllwood/PromiseAudit.git"
+  },
+  "homepage": "https://github.com/REllwood/PromiseAudit#readme",
+  "bugs": {
+    "url": "https://github.com/REllwood/PromiseAudit/issues"
+  },
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "start": "node server.mjs",
+    "test": "node --test",
+    "check": "node scripts/check.mjs",
+    "cli": "node src/cli.js"
+  },
+  "exports": {
+    ".": "./src/audit.js"
+  }
+}

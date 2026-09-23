@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Run or inspect a value-free trace from explicit promise instrumentation.">
+  <title>Promise Audit</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="/src/styles.css">
+</head>
+<body>
+  <header class="masthead">
+    <div>
+      <p class="overline">Development-only async trace</p>
+      <a href="#capture-button">Promise Audit</a>
+    </div>
+    <p id="capture-state">Capture inactive. Explicit wrapper only.</p>
+    <button id="boundary-button" type="button">Instrumentation limits</button>
+  </header>
+
+  <main>
+    <aside class="capture-rail" aria-labelledby="capture-title">
+      <p class="stage">Capture controls</p>
+      <h1 id="capture-title">Trace an interaction</h1>
+      <button id="capture-button" class="primary" type="button">Run synthetic development capture</button>
+      <label for="trace-source">Or paste a trace v1 JSON</label>
+      <textarea id="trace-source" rows="14" spellcheck="false" placeholder='{"traceVersion":1,"operations":[]}'></textarea>
+      <div class="rail-actions">
+        <button id="import-button" type="button">Process supplied trace</button>
+        <button id="fixture-button" type="button">Load trace fixture</button>
+      </div>
+      <label for="trace-file">Choose an explicit local trace</label>
+      <input id="trace-file" type="file" accept="application/json,.json">
+      <label for="pending-threshold">Long-pending threshold in milliseconds</label>
+      <input id="pending-threshold" type="number" min="0" max="600000" step="10" value="180">
+      <div id="job-status" class="job-status" role="status">No trace processed.</div>
+      <button id="cancel-job" type="button" hidden>Stop current capture or processing</button>
+    </aside>
+
+    <section class="trace-viewer">
+      <div id="empty-state" class="empty-state">
+        <p class="stage">Concrete behaviour, bounded claims</p>
+        <h2>Follow labelled work across one development interaction.</h2>
+        <p>The wrapper records timing and relationships only. Arguments, resolved values, rejection reasons, request bodies and environment content stay outside the trace.</p>
+      </div>
+
+      <div id="report" hidden>
+        <section class="trace-header" aria-labelledby="trace-title">
+          <div><p class="stage">Local trace report</p><h2 id="trace-title">Untitled trace</h2></div>
+          <dl id="totals"></dl>
+          <button id="export-button" type="button">Export value-free trace</button>
+        </section>
+        <p id="limitation" class="limitation"></p>
+        <section class="timeline" aria-labelledby="timeline-title">
+          <div class="section-heading"><h3 id="timeline-title">Chronological lanes</h3><p>Relative to the selected capture</p></div>
+          <ol id="lanes"></ol>
+        </section>
+        <div class="trace-columns">
+          <section aria-labelledby="table-title">
+            <div class="section-heading"><h3 id="table-title">Accessible operation table</h3><p>State, duration, parent and marker</p></div>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>Operation</th><th>State</th><th>Duration</th><th>Parent</th><th>Marker</th><th>Source</th></tr></thead>
+                <tbody id="operation-rows"></tbody>
+              </table>
+            </div>
+          </section>
+          <aside aria-labelledby="finding-title">
+            <div class="section-heading"><h3 id="finding-title">Focused observations</h3><p>No universal defect score</p></div>
+            <div id="findings"></div>
+          </aside>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <dialog id="work-dialog">
+    <form method="dialog"><button value="close">Close</button></form>
+    <div id="dialog-job-status" class="job-status" role="status" hidden></div>
+    <button id="dialog-cancel-job" type="button" hidden>Cancel current work</button>
+    <div id="dialog-content"></div>
+  </dialog>
+  <script type="module" src="/src/app.js"></script>
+</body>
+</html>

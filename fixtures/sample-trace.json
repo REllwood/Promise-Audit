@@ -1,0 +1,82 @@
+{
+  "traceVersion": 1,
+  "instrumentationVersion": "0.1.0",
+  "adapter": "explicit PromiseAudit wrapper",
+  "runtime": "Node.js 22 synthetic fixture",
+  "label": "Synthetic image-processing queue",
+  "startedAt": 0,
+  "endedAt": 420,
+  "durationMs": 420,
+  "status": "complete",
+  "droppedEvents": 0,
+  "markers": [
+    {
+      "id": "marker-1",
+      "name": "Process selected images",
+      "at": 5
+    }
+  ],
+  "operations": [
+    {
+      "id": "promise-1",
+      "label": "Resize image one",
+      "source": "/workspace/src/queue.js:24",
+      "parentId": "",
+      "markerId": "marker-1",
+      "serialGroup": "resize-loop",
+      "detached": false,
+      "creationKnown": true,
+      "startedAt": 10,
+      "settledAt": 100,
+      "status": "fulfilled",
+      "rejectionObserved": true
+    },
+    {
+      "id": "promise-2",
+      "label": "Resize image two",
+      "source": "/workspace/src/queue.js:24",
+      "parentId": "",
+      "markerId": "marker-1",
+      "serialGroup": "resize-loop",
+      "detached": false,
+      "creationKnown": true,
+      "startedAt": 110,
+      "settledAt": 205,
+      "status": "fulfilled",
+      "rejectionObserved": true
+    },
+    {
+      "id": "promise-3",
+      "label": "Read optional sidecar",
+      "source": "/workspace/src/metadata.js:40",
+      "parentId": "promise-1",
+      "markerId": "marker-1",
+      "serialGroup": "",
+      "detached": false,
+      "creationKnown": true,
+      "startedAt": 20,
+      "settledAt": 55,
+      "status": "rejected",
+      "rejectionObserved": false
+    },
+    {
+      "id": "promise-4",
+      "label": "Development metrics flush",
+      "source": "/workspace/src/metrics.js:7",
+      "parentId": "",
+      "markerId": "marker-1",
+      "serialGroup": "",
+      "detached": true,
+      "ignoredReason": "Intentional background metrics fixture",
+      "creationKnown": true,
+      "startedAt": 30,
+      "settledAt": null,
+      "status": "pending",
+      "rejectionObserved": false
+    }
+  ],
+  "limitations": [
+    "Only work passed through the explicit wrapper is instrumented.",
+    "Parent identifiers and serial groups are declared evidence, not a perfect runtime causal graph."
+  ]
+}
